@@ -1,15 +1,13 @@
-<?php 
-    $name=$_REQUEST['name']; 
-    $email=$_REQUEST['email']; 
-    $message=$_REQUEST['message']; 
-    if (($name=="")||($email=="")||($message=="")) 
-        { 
-        echo "All fields are required, please fill <a href=\"\">the form</a> again."; 
-        } 
-    else{         
-        $from="From: $name<$email>\r\nReturn-path: $email"; 
-        $subject="Message sent using your contact form"; 
-        mail("temihren@gmail.com.com", $subject, $message, $from); 
-        echo "Email sent!"; 
-        }
+<?
+if (array_key_exists('message', $_POST)) {
+   $to = 'somkin-k@mail.ru';
+   $subject = 'Заполнена контактная форма с '.$_SERVER['HTTP_REFERER'];
+   $subject = "=?utf-8?b?". base64_encode($subject) ."?=";
+   $message = "Имя: ".$_POST['name']."\nEmail: ".$_POST['ContactForm']."\nIP: ".$_SERVER['REMOTE_ADDR']."\nСообщение: ".$_POST['message'];
+   $headers = 'Content-type: text/plain; charset="utf-8"';
+   $headers .= "MIME-Version: 1.0\r\n";
+   $headers .= "Date: ". date('D, d M Y h:i:s O') ."\r\n";
+   mail($to, $subject, $message, $headers);
+   echo $_POST['nameFF'];
+}
 ?>
