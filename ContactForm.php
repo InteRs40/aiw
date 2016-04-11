@@ -1,14 +1,30 @@
-<?
-if (array_key_exists('message', $_POST)) {
-   $to = 'somkin-k@mail.ru';
-   $subject = 'Заполнена контактная форма с '.$_SERVER['HTTP_REFERER'];
-   $subject = "=?utf-8?b?". base64_encode($subject) ."?=";
-   $message = "Имя: ".$_POST['name']."\nEmail: ".$_POST['email']."\nIP: ".$_SERVER['REMOTE_ADDR']."\nСообщение: ".$_POST['message'];
-   $headers = 'Content-type: text/plain; charset="utf-8"';
-   $headers .= "MIME-Version: 1.0\r\n";
-   $headers .= "Date: ". date('D, d M Y h:i:s O') ."\r\n";
-   mail($to, $subject, $message, $headers);
-   echo $_POST['name'];
-   echo $_POST['message'];
+<?php
+ 
+
+$name = htmlspecialchars($_POST["name"]);
+$email = htmlspecialchars($_POST["email"]);
+$message = htmlspecialchars($_POST["message"]);
+
+ 
+
+$address = "somkin-k@mail.ru";
+$sub = "Сообщение с сайта http://inters40.github.io/aiw/";
+ 
+
+$mes = "Сообщение с сайта http://inters40.github.io/aiw/.\n
+Имя отправителя: $name 
+Электронный адрес отправителя: $email
+Текст сообщения: $message";
+
+if (empty())
+{
+
+$from  = "From: $name <$email> \r\n Reply-To: $email \r\n"; 
+if (mail($address, $sub, $mes, $from)) {
+   header('Refresh: 5; URL=http://inters40.github.io/aiw/');
+   echo 'Письмо отправлено, через 5 секунд вы вернетесь на сайт http://inters40.github.io/aiw/';}
+else {
+   header('Refresh: 5; URL=http://inters40.github.io/aiw/');
+   echo 'Письмо не отправлено, через 5 секунд вы вернетесь на страницу http://inters40.github.io/aiw/contact.html';}
 }
 ?>
