@@ -2,47 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<style> 
-			#feedback-form {
-				max-width: 400px;
-			  	padding: 2%;
-			  	border-radius: 3px;
-			  	background: #f1f1f1;
-			}
-			#feedback-form [required] {
-			  	width: 100%;
-			  	box-sizing: border-box;
-			  	margin: 2px 0 2% 0;
-			  	padding: 2%;
-			  	border: 1px solid rgba(0,0,0,.1);
-			  	border-radius: 3px;
-			  	box-shadow: 0 1px 2px -1px rgba(0,0,0,.2) inset, 0 0 transparent;
-			}
-			#feedback-form [required]:hover {
-			  	border-color: #7eb4ea;
-			  	box-shadow: 0 1px 2px -1px rgba(0,0,0,.2) inset, 0 0 transparent;
-			}
-			#feedback-form [required]:focus {
-			  	outline: none;
-			  	border-color: #7eb4ea;
-			  	box-shadow: 0 1px 2px -1px rgba(0,0,0,.2) inset, 0 0 4px rgba(	35,146,243,.5			);
-			  	transition: .2s linear;
-			}
-			#feedback-form [type="submit"] {
-				padding: 2%;
-				border: none;
-				border-radius: 3px;
-				box-shadow: 0 0 0 1px rgba(0,0,0,.2) inset;
-				background: #669acc;
-				color: #fff;
-			}
-			#feedback-form [type="submit"]:hover {
-				background: #5c90c2;
-			}
-			#feedback-form [type="submit"]:focus {
-				box-shadow: 0 1px 1px #fff, inset 0 1px 2px rgba(0,0,0,.8), inset 0 -1px 0 			rgba(0,0,0,.05);
-			}
-		</style>
 		<title>AiW</title>
 		<meta name="description" content="This is animation."/>
 		<meta name="keywords" content="animation, world, disney, dreamworks, союзмульфильм, ghibli"/>
@@ -137,7 +96,7 @@
 									<h4>Остались вопросы? Хотите что-то добавить? Узнать о анимации больше?</h4>	
 									Пожалуйста заполните форму и мы обязательно с вами свяжемся.
 									<div id="contactFormBox">
-										<form action="ContactForm.php" id="theform" name="theform" method="post">
+										<form  id="theform" name="theform" method="post">
 									    	<p><label for="name">ФИО</label><br /><input id="name" type="text" 	value="" name="name" required placeholder="фамилия имя отчество"  x-autocompletetype="name" /></p>
 									    	<p><label for="email">Почта e-mail</label><br /><input id="email" type="text" value="" name="email" required placeholder="введите почту e-mail"  x-autocompletetype="email" /></p>
 									    	<p><label for="message">Сообщение</label><br /><textarea id="message" rows="10" cols="60"  name="message" required placeholder="введите сообщение"  x-autocompletetype="message" ></textarea></p>
@@ -146,25 +105,6 @@
 									    	<input class="submit" type="submit" name="submit" value="Отправить" /></p>
 									    	<br class="clearfloat" />
 										</form>
-										<script>
-											document.getElementById('feedback-form').addEventListener('submit', function(evt){
-											  var http = new XMLHttpRequest(), f = this;
-											  evt.preventDefault();
-											  http.open("POST", "http://inters40.github.io/aiw/ContactForm.php", true);
-											  http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-											  http.send("name=" + f.name.value + "&email=" + f.email.value + "&message=" + f.message.value);
-											  http.onreadystatechange = function() {
-											    if (http.readyState == 4 && http.status == 200) {
-											      alert(http.responseText + ', Ваше сообщение получено.\nНаши специалисты ответят Вам в течении 2-х дней.\nСпасибо за внимание!');    
-											      f.message.removeAttribute('value'); // очистить поле сообщения (две строки)
-											      f.message.value='';
-											    }
-											  }
-											  http.onerror = function() {
-											    alert('Извините, данные не были переданы, попробуйте снова.');
-											  }
-											}, false);
-										</script>
 									</div><!-- конец contactFormBox -->
 								</div><!-- конец mainRight -->
 	            			</div><!-- конец #main -->
